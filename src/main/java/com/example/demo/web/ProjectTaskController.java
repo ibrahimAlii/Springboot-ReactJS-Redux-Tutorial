@@ -6,10 +6,7 @@ import com.example.demo.service.ProjectTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,5 +24,15 @@ public class ProjectTaskController {
     @RequestMapping
     public ResponseEntity<?> insertProjectTask(@Valid @RequestBody ProjectTask projectTask){
         return taskService.insertTaskProject(projectTask);
+    }
+
+    @GetMapping("/all")
+    public Iterable<ProjectTask> getAllProjects(){
+        return taskService.getAllTasks();
+    }
+
+    @GetMapping("/{project_id}")
+    public ResponseEntity<ProjectTask> getProjectById(@PathVariable Long project_id){
+        return taskService.getProjectById(project_id);
     }
 }

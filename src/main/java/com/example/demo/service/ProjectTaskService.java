@@ -22,4 +22,12 @@ public class ProjectTaskService  {
             projectTask.setStatus("To-Do");
         return new ResponseEntity<>(taskRepository.save(projectTask), HttpStatus.CREATED);
     }
+
+    public Iterable<ProjectTask> getAllTasks(){
+        return taskRepository.findAll();
+    }
+
+    public ResponseEntity<ProjectTask> getProjectById(Long id){
+        return new ResponseEntity<>(taskRepository.getProjectTaskById(id), HttpStatus.OK);
+    }
 }
